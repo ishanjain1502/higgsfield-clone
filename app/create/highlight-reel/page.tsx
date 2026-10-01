@@ -1,8 +1,13 @@
 import { Suspense } from "react";
 
 import { HighlightReelWizard } from "@/components/highlight-reel/highlight-reel-wizard";
+import { requireOnboardedUser } from "@/lib/require-user";
 
-export default function HighlightReelPage() {
+export const dynamic = "force-dynamic";
+
+export default async function HighlightReelPage() {
+  await requireOnboardedUser();
+
   return (
     <Suspense
       fallback={
