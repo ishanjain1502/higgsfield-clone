@@ -18,7 +18,8 @@ Build a **Next.js** creative-studio interpretation of Higgsfield: landing, magic
 - **Client-heavy** creation flow: `ReelConfig` in React state (and optional sessionStorage for wizard continuity — see decisions).
 - **Preset resolver v1** always returns one bundled demo MP4; selections drive recipe UI only.
 - **Uploads** validated and previewed in-browser only; never sent to server.
-- **Auth:** NextAuth email magic link; user row stores onboarding JSON + `hasSeenHomeModal`.
+- **Data:** **Supabase** (PostgreSQL). **Prisma** + `@auth/prisma-adapter` for NextAuth tables and user onboarding fields (`DATABASE_URL` pooler + `DIRECT_URL` for migrations). No SQLite.
+- **Auth:** NextAuth **Google** sign-in (`Continue with Google`); magic link **deferred**. User row stores onboarding JSON + home modal flag.
 - **No LLM**, no real generation, no social APIs.
 
 ---

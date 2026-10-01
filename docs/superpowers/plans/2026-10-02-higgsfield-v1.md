@@ -4,14 +4,14 @@
 
 **Goal:** Ship the v1 Next.js creative studio defined in `.docs/project-spec-v1.md` and `init.md` (Tightening Boundaries).
 
-**Architecture:** Single Next.js App Router app with shadcn UI, NextAuth magic link, Prisma-or-Drizzle per `.docs/decisions-v1.md`, client-side `ReelConfig` wizard, preset manifest resolving to one demo MP4, Focus Mode ending at Coming Soon with Studio handoff.
+**Architecture:** Single Next.js App Router app with shadcn UI, NextAuth **Google** + Prisma on **Supabase PostgreSQL**, client-side `ReelConfig` wizard, preset manifest resolving to one demo MP4, Focus Mode ending at Coming Soon with Studio handoff.
 
-**Tech Stack:** Next.js, TypeScript, Tailwind CSS, shadcn/ui (Radix), NextAuth, ORM from decisions file, Vitest for unit tests.
+**Tech Stack:** Next.js, TypeScript, Tailwind CSS, shadcn/ui (Radix), NextAuth (Google provider), Prisma + Supabase, Vitest for unit tests.
 
 ## Global Constraints
 
 - v1 scope locked in `init.md` Tightening Boundaries; spec precedence in `.docs/project-spec-v1.md` §1
-- NextAuth **magic link** only (no OAuth unless decisions revised)
+- NextAuth **Google** sign-in for v1; **magic link deferred** (see O4 in decisions template)
 - One demo output video; selections do not change MP4 in v1
 - Upload max **20 MB**; server does not store uploads
 - Mock transparency: **short copy** after Studio generate; on Focus **Coming Soon**
@@ -342,19 +342,28 @@ export async function runMockGeneration(
 
 ---
 
-### Task 7: Auth, DB, onboarding, home modal
+### Task 7: Supabase, Prisma, Auth, onboarding, home modal
 
 **Files:**
-- Create: `lib/auth.ts`, `app/api/auth/[...nextauth]/route.ts`, schema per O1/O2/O3/O4
+- Create: `prisma/schema.prisma`, `lib/db.ts` (Prisma client singleton for Next.js)
+- Create: `lib/supabase/server.ts`, `lib/supabase/client.ts` (if decisions O1 uses Supabase client helpers)
+- Create: `lib/auth.ts`, `app/api/auth/[...nextauth]/route.ts`
 - Create: `app/login/page.tsx`, `app/onboarding/page.tsx`, `app/home/page.tsx`
+- Env: `.env.example` listing `DATABASE_URL`, `DIRECT_URL`, `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `AUTH_SECRET`, `AUTH_URL`, `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`
 
 **Interfaces:**
-- Produces: session required for `/home`, `/studio`, `/focus`, `/create/*`; onboarding writes JSON preferences; sets `hasSeenHomeOnboardingModal` false until modal dismissed
+- Produces: session required for `/home`, `/studio`, `/focus`, `/create/*`; onboarding writes JSON to User via Prisma; modal flag per O3
 
-- [ ] NextAuth Email provider per O4  
-- [ ] Middleware: protect routes (define list in `middleware.ts`)  
-- [ ] Onboarding forms from init.md §6 options (subset allowed in decisions)  
-- [ ] Home modal one-time per O3  
+- [ ] Create Supabase project; copy pooler + direct URLs into env (no SQLite)
+- [ ] `npx prisma init`; set `provider = "postgresql"` and both URLs in `schema.prisma`
+- [ ] Extend `User` model: `onboardingPreferences Json?`, `hasSeenHomeOnboardingModal Boolean @default(false)` (field names per `.docs/decisions-v1.md` O2/O3)
+- [ ] `npx prisma migrate dev` against Supabase `DIRECT_URL`
+- [ ] NextAuth with `PrismaAdapter` + `GoogleProvider` only (no Email provider in v1)
+- [ ] Login page: primary button **Continue with Google**; no magic link UI in v1
+- [ ] Google Cloud OAuth redirect: `{AUTH_URL}/api/auth/callback/google`
+- [ ] Middleware: protect routes (define list in `middleware.ts`)
+- [ ] Onboarding forms from init.md §6 options (subset allowed in decisions)
+- [ ] Home modal one-time per O3
 - [ ] Commit
 
 ---
@@ -387,7 +396,7 @@ export async function runMockGeneration(
 
 - [ ] Run checklist `.docs/project-spec-v1.md` §19  
 - [ ] Confirm `.agent-logs/` present  
-- [ ] Deploy; verify logged-out landing + magic link + golden path  
+- [ ] Deploy; verify logged-out landing + Google sign-in + golden path  
 - [ ] Commit any deploy docs in README
 
 ---
@@ -402,7 +411,7 @@ export async function runMockGeneration(
 | Upload rules | 3, 4, 9 |
 | Mock transparency | 4, 5, 9 |
 | Result screen | 5 |
-| Auth magic link | 7 |
+| Auth Google (NextAuth) | 7 |
 | Onboarding + modal | 7 |
 | Coming Soon | 8 |
 | Landing | 6 |

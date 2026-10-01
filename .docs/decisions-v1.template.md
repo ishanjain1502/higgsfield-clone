@@ -5,11 +5,23 @@ Implementation plan **Task 0** is complete only when `.docs/decisions-v1.md` exi
 
 ---
 
-## O1 — Database
+## O1 — Database (locked: Supabase + Next.js)
 
-- **provider:** REQUIRED (e.g. `sqlite`, `postgresql`)
-- **orm:** REQUIRED (e.g. `prisma`, `drizzle`)
-- **connectionEnvVar:** REQUIRED (e.g. `DATABASE_URL`)
+Do **not** use SQLite. Use **Supabase** (managed PostgreSQL) with Next.js.
+
+- **provider:** `supabase`
+- **database:** `postgresql` (Supabase-hosted)
+- **orm:** `prisma` with `@auth/prisma-adapter` for NextAuth `User` / `Session` / `Account` / `VerificationToken` tables
+- **supabaseClient:** `@supabase/supabase-js` + `@supabase/ssr` when server/client needs Supabase APIs beyond Prisma (optional for v1 if all data goes through Prisma)
+- **connectionEnvVars:**
+  - `DATABASE_URL` — Supabase **connection pooler** URI (use mode recommended in Supabase dashboard for serverless/Next.js)
+  - `DIRECT_URL` — Supabase **direct** Postgres URI (Prisma migrations only)
+- **supabaseProjectEnvVars:**
+  - `NEXT_PUBLIC_SUPABASE_URL`
+  - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+- **serviceRole:** `SUPABASE_SERVICE_ROLE_KEY` — REQUIRED `use` | `skip` for v1 (if `skip`, no server code uses service role)
+
+**Reference:** [Supabase + Next.js](https://supabase.com/docs/guides/getting-started/quickstarts/nextjs), [Prisma with Supabase](https://supabase.com/docs/guides/database/prisma)
 
 ## O2 — Onboarding preferences schema
 
@@ -30,10 +42,17 @@ Implementation plan **Task 0** is complete only when `.docs/decisions-v1.md` exi
 
 - **fieldName:** REQUIRED (e.g. `hasSeenHomeOnboardingModal` boolean on User)
 
-## O4 — Magic link email
+## O4 — Authentication (locked: Google first; magic link deferred)
 
-- **provider:** REQUIRED (e.g. `resend`, `nodemailer-smtp`)
-- **envVars:** REQUIRED (list names, e.g. `EMAIL_FROM`, `RESEND_API_KEY`)
+- **framework:** `next-auth` (Auth.js) with `PrismaAdapter`
+- **primaryProvider:** `google` — NextAuth `GoogleProvider`; login CTA copy: **Continue with Google** (init.md §5)
+- **magicLink:** `deferred` — do **not** implement Email magic link in v1
+- **envVars:**
+  - `AUTH_SECRET`
+  - `AUTH_URL` — full site URL in production (callback base)
+  - `GOOGLE_CLIENT_ID`
+  - `GOOGLE_CLIENT_SECRET`
+- **googleCloudConsole:** OAuth client type **Web application**; authorized redirect URI must include `{AUTH_URL}/api/auth/callback/google`
 
 ## O5 — Upload validation
 

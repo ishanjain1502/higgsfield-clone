@@ -32,7 +32,7 @@ This spec restates v1 requirements and flags places where init.md still disagree
 |------------|--------|
 | v1 scope **locked**; change only by revising Tightening Boundaries | Tightening |
 | **Next.js** application structure | §29 |
-| **NextAuth** + **magic link** as primary auth (Tightening supersedes §5 “Continue with Google” preferred) | Tightening, §5 |
+| **NextAuth** + **Google** sign-in as primary auth; **magic link deferred** | Tightening (revised), §5 |
 | Non-developer can use **deployed** app while logged out / signed in as appropriate | §5, Tightening |
 | **No** production ML, GPU, cloud video pipeline, scraping footage | §27, Tightening |
 | **No** real LLM in Focus or Studio | Tightening |
@@ -74,11 +74,10 @@ This spec restates v1 requirements and flags places where init.md still disagree
 ### 5.2 Authentication
 
 - Route: `/login` (indicative; Tightening Engineering surface).
-- **Magic link** via NextAuth.
+- **Google** via NextAuth (`Continue with Google`).
+- **Magic link** email auth: **deferred** (not v1).
 - First-time users: auth → **onboarding** → app.
 - Onboarding preferences stored on **user record** (**database field**; schema not specified in init.md — see §12 Open decisions).
-
-**Note:** §5 still mentions Google OAuth as preferred in the refined doc; **Tightening** locks magic link. OAuth only if added later **without** slipping golden path (Tightening “Explicitly not in v1”).
 
 ### 5.3 Onboarding
 
@@ -243,10 +242,10 @@ Resolve in init.md or a short addendum before implementation:
 
 | ID | Topic |
 |----|--------|
-| O1 | Database technology and ORM (init.md says “Database” only, §29) |
+| O1 | **Locked:** Supabase (PostgreSQL) + Next.js; Prisma + `@auth/prisma-adapter` for NextAuth (see `.docs/decisions-v1.template.md` O1). Not SQLite. |
 | O2 | Schema for onboarding preferences (`database field` — shape, JSON vs columns) |
 | O3 | Persistence for “has seen home onboarding modal” (behavior specified; storage field not named) |
-| O4 | Magic link **email provider** and env configuration |
+| O4 | **Locked:** Google OAuth env + NextAuth (`AUTH_SECRET`, `AUTH_URL`, `GOOGLE_CLIENT_*`). Magic link deferred. |
 | O5 | Supported upload **MIME types** and **codecs** for error messages |
 | O6 | Clip **reorder** requirement for uploads/preset clips |
 | O7 | Studio grid **cap count** (capped — number not given) |
@@ -305,7 +304,7 @@ Focus entry (sports highlight first when onboarding matches)
 | Route | Screen |
 |-------|--------|
 | `/` | Landing |
-| `/login` | Magic link auth |
+| `/login` | Google sign-in |
 | `/onboarding` | Onboarding questionnaire |
 | `/home` | Post-auth home + one-time modal |
 | `/studio` | Explore / capability grid |
@@ -363,7 +362,8 @@ Init.md does not mandate App Router vs Pages Router — **open** unless team loc
 - Multiple output videos per config
 - Upload affecting render or server-side clip storage
 - Real social integrations
-- OAuth beyond magic link unless added without slipping golden path
+- Magic link email auth (deferred)
+- OAuth providers beyond Google unless added without slipping golden path
 - Evaluator bypass flows
 
 From §27 / §911 (still valid where Tightening silent):
@@ -376,7 +376,7 @@ From §27 / §911 (still valid where Tightening silent):
 
 1. `ReelConfig` + manifest + single output asset  
 2. Studio Highlight Reel golden path + result + export  
-3. Auth (magic link) + onboarding + DB field  
+3. Auth (Google) + onboarding + DB field  
 4. Focus path → Coming Soon + Studio handoff  
 5. Polish: generation, result, golden path (**not** entire shell)
 
@@ -416,7 +416,7 @@ From §27 / §911 (still valid where Tightening silent):
 
 | Topic | Refined doc | Tightening / v1 |
 |-------|-------------|-----------------|
-| Auth | Google preferred (§5) | Magic link |
+| Auth | Google preferred (§5) | Google primary; magic link deferred |
 | Home personalization | Prioritize CTAs (§6–7) | No obvious home redesign; Focus-only ordering; one-time modal |
 | Focus end state | Generation (§30 Phase 5) | Coming Soon; no generate |
 | Focus UI | ChatGPT-like (§9) | No LLM; rule-based |

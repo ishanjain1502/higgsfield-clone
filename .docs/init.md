@@ -1217,8 +1217,9 @@ This section locks **v1** scope and behavior. It supersedes earlier open-ended w
 
 ## Authentication
 
-- **NextAuth** with **magic link** as the primary auth path for deployed evaluators.
-- First-time users complete onboarding after auth; preferences persist in the DB.
+- **NextAuth** with **Google** (`Continue with Google`) as the primary auth path for v1.
+- **Magic link** email auth is **deferred** (not required for v1; may be added later).
+- First-time users complete onboarding after auth; preferences persist in the DB (Supabase PostgreSQL via Prisma).
 - Requirement unchanged: someone who is not the developer must be able to use the deployed app.
 
 ---
@@ -1351,7 +1352,7 @@ Ask explicitly before diverging from these defaults on high-visibility screens.
 **Routes (indicative):**
 
 - `/` — landing
-- `/login` — magic link
+- `/login` — Google sign-in (magic link deferred)
 - `/onboarding`
 - `/home`
 - `/studio` — explore / capability grid (capped)
@@ -1373,7 +1374,7 @@ Ask explicitly before diverging from these defaults on high-visibility screens.
 
 1. `ReelConfig` + manifest + single output asset
 2. Studio Highlight Reel golden path + result + export
-3. Auth (magic link) + onboarding + DB field
+3. Auth (Google) + onboarding + DB field
 4. Focus path ending in Coming Soon + Studio handoff
 5. Polish on generation, result, and golden path only (not entire app shell)
 
@@ -1398,5 +1399,6 @@ Ask explicitly before diverging from these defaults on high-visibility screens.
 - Multiple output videos per resolver key (single demo mp4)
 - Upload affecting render or server-side clip storage
 - Real social posting integrations
-- OAuth providers beyond magic link unless added without slipping the golden path
+- Magic link email auth (deferred past v1)
+- Additional OAuth providers beyond Google unless added without slipping the golden path
 - Evaluator-only bypass flows
