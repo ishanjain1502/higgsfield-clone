@@ -72,6 +72,46 @@ npm start        # run production build
 
 If auth env vars are missing, `/login` shows setup instructions instead of crashing.
 
+## Deploy on Vercel
+
+Deployment was **not** run during implementation; use these steps when you are ready to verify §19 live checks.
+
+1. Push `feat/higgsfield-v1` (or your submission branch) to a **public** GitHub repository.
+2. In [Vercel](https://vercel.com/new), import the repo as a **Next.js** project (root directory `.`, default build command `npm run build`, output handled by Next.js).
+3. Set **Environment variables** for Production (and Preview if you use preview URLs). Mirror [`.env.example`](.env.example):
+
+   | Variable | Purpose |
+   |----------|---------|
+   | `DATABASE_URL` | Supabase **pooler** URI (Prisma at runtime) |
+   | `DIRECT_URL` | Supabase **direct** URI (migrations; optional on Vercel if you migrate locally) |
+   | `NEXT_PUBLIC_SUPABASE_URL` | Supabase project URL |
+   | `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Supabase anon key |
+   | `AUTH_SECRET` | NextAuth secret (`openssl rand -base64 32`) |
+   | `AUTH_URL` | **Production origin**, e.g. `https://your-app.vercel.app` (no trailing slash) |
+   | `GOOGLE_CLIENT_ID` | OAuth Web client ID |
+   | `GOOGLE_CLIENT_SECRET` | OAuth client secret |
+
+4. In Google Cloud Console, add an **Authorized redirect URI**:
+
+   ```text
+   https://your-app.vercel.app/api/auth/callback/google
+   ```
+
+5. Apply migrations against Supabase (from a machine with `DIRECT_URL` in env):
+
+   ```bash
+   npx prisma migrate deploy
+   ```
+
+6. Deploy, then open the Vercel URL logged out and run the smoke steps in [`docs/SUBMISSION-CHECKLIST.md`](docs/SUBMISSION-CHECKLIST.md).
+
+Local production check (optional): `npm run build && npm start` with `.env.local` pointing at your database.
+
+## Submission
+
+- Checklist and PASS/FAIL/BLOCKED status: [`docs/SUBMISSION-CHECKLIST.md`](docs/SUBMISSION-CHECKLIST.md)
+- Agent session logs: [CAPTURE-TEST.md](CAPTURE-TEST.md)
+
 ## Decisions
 
 Engineering choices are locked in `.docs/decisions-v1.md`.
