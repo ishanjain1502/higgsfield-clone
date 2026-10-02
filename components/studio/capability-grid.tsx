@@ -6,10 +6,7 @@ import { useState } from "react";
 
 import { ComingSoonDialog } from "@/components/studio/coming-soon-dialog";
 import { cn } from "@/lib/utils";
-import {
-  partitionStudioCapabilities,
-  type StudioCapability,
-} from "@/lib/studio-capabilities";
+import type { StudioCapability } from "@/lib/studio-capabilities";
 
 const cardClassName =
   "group relative aspect-[4/5] w-full overflow-hidden rounded-xl border border-border/50 bg-card text-left ring-1 ring-foreground/5 transition-transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring";
@@ -71,8 +68,17 @@ function CapabilityCard({
   );
 }
 
-export function CapabilityGrid() {
-  const { visible, overflow, overflowLabel } = partitionStudioCapabilities();
+type CapabilityGridProps = {
+  visible: StudioCapability[];
+  overflow: StudioCapability[];
+  overflowLabel: string;
+};
+
+export function CapabilityGrid({
+  visible,
+  overflow,
+  overflowLabel,
+}: CapabilityGridProps) {
   const [showOverflow, setShowOverflow] = useState(false);
   const [comingSoonFeature, setComingSoonFeature] = useState<string | null>(
     null,
