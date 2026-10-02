@@ -18,6 +18,11 @@ export function isAuthConfigured(): boolean {
   return getMissingAuthEnvKeys().length === 0;
 }
 
+/** Flip to true when Google OAuth should be offered on the login page. */
+export function isGoogleSignInEnabled(): boolean {
+  return false;
+}
+
 export function isSignInAvailable(): boolean {
   return isAuthConfigured() || isEvaluatorAccessEnabled();
 }

@@ -1,0 +1,30 @@
+2026-10-02T13:49:02.897Z wrapper event=parse-error bytes=3094
+2026-10-02T13:51:52.404Z wrapper event=parse-error bytes=850
+2026-10-02T13:53:54.644Z wrapper event=parse-error bytes=2433
+2026-10-02T13:54:51.577Z wrapper event=parse-error bytes=451
+2026-10-02T13:55:26.271Z wrapper event=parse-error bytes=713
+2026-10-02T13:55:49.448Z wrapper event=parse-error bytes=1313
+2026-10-02T13:56:12.732Z wrapper event=parse-error bytes=830
+2026-10-02T13:56:42.895Z wrapper event=parse-error bytes=2223
+2026-10-02T13:57:25.371Z wrapper event=parse-error bytes=828
+2026-10-02T13:58:01.945Z wrapper event=parse-error bytes=141
+2026-10-02T13:58:02.105Z wrapper event=parse-error bytes=140
+2026-10-02T13:58:10.225Z wrapper event=beforeSubmitPrompt bytes=256
+2026-10-02T13:58:10.290Z python event=beforeSubmitPrompt
+2026-10-02T13:58:15.038Z wrapper event=parse-error bytes=134
+2026-10-02T13:58:40.442Z wrapper event=beforeSubmitPrompt bytes=205
+2026-10-02T13:58:40.511Z python event=beforeSubmitPrompt
+2026-10-02T13:58:58.687Z wrapper event=afterAgentResponse bytes=1964
+2026-10-02T13:58:58.765Z python event=afterAgentResponse
+2026-10-02T13:59:26.269Z wrapper event=beforeSubmitPrompt bytes=840
+2026-10-02T13:59:26.340Z python event=beforeSubmitPrompt
+2026-10-02T13:59:35.672Z wrapper event=beforeSubmitPrompt bytes=257
+2026-10-02T13:59:35.741Z python event=beforeSubmitPrompt
+2026-10-02T13:59:35.814Z wrapper event=afterAgentResponse bytes=260
+2026-10-02T13:59:35.873Z python event=afterAgentResponse
+2026-10-02T13:59:51.540Z wrapper event=afterAgentResponse bytes=2655
+2026-10-02T13:59:51.609Z python event=afterAgentResponse
+2026-10-02T14:00:35.642Z wrapper event=beforeSubmitPrompt bytes=831
+2026-10-02T14:00:35.717Z python event=beforeSubmitPrompt
+2026-10-02T14:01:03.828Z wrapper event=afterAgentResponse bytes=1757
+2026-10-02T14:01:03.898Z python event=afterAgentResponse

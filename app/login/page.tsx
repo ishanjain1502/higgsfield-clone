@@ -6,12 +6,14 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import {
   authEnvHelpMessage,
   isAuthConfigured,
+  isGoogleSignInEnabled,
   isSignInAvailable,
 } from "@/lib/auth-env";
 import { isEvaluatorAccessEnabled } from "@/lib/evaluator";
 
 export default function LoginPage() {
   const googleConfigured = isAuthConfigured();
+  const googleSignInEnabled = isGoogleSignInEnabled();
   const evaluatorEnabled = isEvaluatorAccessEnabled();
   const helpMessage = authEnvHelpMessage();
 
@@ -35,7 +37,20 @@ export default function LoginPage() {
       ) : null}
 
       {googleConfigured ? (
-        <GoogleSignInButton disabled={!googleConfigured} />
+        <>
+          <GoogleSignInButton
+            disabled={!googleSignInEnabled}
+          />
+          {!googleSignInEnabled ? (
+            <Alert>
+              <AlertTitle>Google sign-in temporarily unavailable</AlertTitle>
+              <AlertDescription>
+                Use evaluator access below, or check back later for Google
+                sign-in.
+              </AlertDescription>
+            </Alert>
+          ) : null}
+        </>
       ) : (
         <Alert>
           <AlertTitle>Google sign-in not configured</AlertTitle>

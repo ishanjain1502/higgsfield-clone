@@ -3,22 +3,22 @@
   "hooks": {
     "sessionStart": [
       {
-        "command": "python .cursor/hooks/agent_capture.py"
+        "command": "node .cursor/hooks/run-capture.mjs"
       }
     ],
     "beforeSubmitPrompt": [
       {
-        "command": "python .cursor/hooks/agent_capture.py"
+        "command": "node .cursor/hooks/run-capture.mjs"
       }
     ],
     "afterAgentResponse": [
       {
-        "command": "python .cursor/hooks/agent_capture.py"
+        "command": "node .cursor/hooks/run-capture.mjs"
       }
     ],
     "sessionEnd": [
       {
-        "command": "python .cursor/hooks/agent_capture.py"
+        "command": "node .cursor/hooks/run-capture.mjs"
       }
     ]
   }

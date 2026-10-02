@@ -11,7 +11,10 @@ export function GoogleSignInButton({ disabled }: { disabled?: boolean }) {
       size="lg"
       className="w-full"
       disabled={disabled}
-      onClick={() => signIn("google", { callbackUrl: "/onboarding" })}
+      onClick={() => {
+        if (disabled) return;
+        void signIn("google", { callbackUrl: "/onboarding" });
+      }}
     >
       Continue with Google
     </Button>
