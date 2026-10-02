@@ -21,12 +21,21 @@ export const STUDIO_CAPABILITIES: StudioCapability[] = [
   },
 ];
 
-export function partitionStudioCapabilities(capabilities = STUDIO_CAPABILITIES) {
+export type PartitionedStudioCapabilities = {
+  visible: StudioCapability[];
+  overflow: StudioCapability[];
+  overflowLabel: string;
+  visibleCount: number;
+};
+
+export function partitionStudioCapabilities(
+  capabilities = STUDIO_CAPABILITIES,
+): PartitionedStudioCapabilities {
   const count = decisions.O7.visibleCapabilityCount;
   const overflowLabel = decisions.O7.overflowLabel;
 
   return {
-    visible: capabilities.slice(0, 1),
+    visible: capabilities.slice(0, count),
     overflow: capabilities.slice(count),
     overflowLabel,
     visibleCount: count,

@@ -1,10 +1,12 @@
 import { CapabilityGrid } from "@/components/studio/capability-grid";
 import { requireOnboardedUser } from "@/lib/require-user";
+import { partitionStudioCapabilities } from "@/lib/studio-capabilities";
 
 export const dynamic = "force-dynamic";
 
 export default async function StudioPage() {
   await requireOnboardedUser();
+  const { visible, overflow, overflowLabel } = partitionStudioCapabilities();
 
   return (
     <main className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
@@ -19,7 +21,11 @@ export default async function StudioPage() {
       </div>
 
       <div className="mt-10">
-        <CapabilityGrid />
+        <CapabilityGrid
+          visible={visible}
+          overflow={overflow}
+          overflowLabel={overflowLabel}
+        />
       </div>
     </main>
   );

@@ -22,7 +22,7 @@ import { manifestData } from "@/lib/preset-manifest";
 import type { ReelConfig, RecipeViewModel } from "@/lib/reel-config";
 
 const DEMO_EFFECTS = ["Glow", "Motion Blur"] as const;
-const YOUTUBE_TRACK_LABEL = "Remember the Name";
+const YOUTUBE_TRACK_LABEL = "Viva La Vida by Coldplay";
 const DOWNLOAD_FILENAME = "messi-highlight.mp4";
 
 const SHARE_PLATFORMS = [
