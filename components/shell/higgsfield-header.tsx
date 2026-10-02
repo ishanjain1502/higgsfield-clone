@@ -44,7 +44,7 @@ export function HiggsfieldHeader({ user }: { user: HeaderUser }) {
 
         <div className="flex items-center gap-1.5 sm:gap-2">
           <a
-            href="https://www.instagram.com/higgsfield_ai"
+            href="https://www.instagram.com/higgsfield.ai"
             target="_blank"
             rel="noopener noreferrer"
             className="hidden rounded-lg p-2 text-foreground/80 transition-colors hover:bg-muted/50 hover:text-foreground sm:inline-flex"
