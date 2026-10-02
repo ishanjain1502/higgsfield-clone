@@ -1,6 +1,9 @@
 import type { Session } from "next-auth";
 
-import type { HeaderUser } from "./higgsfield-header";
+export type HeaderUser = {
+  name?: string | null;
+  role?: "evaluator";
+} | null;
 
 /** Serializable snapshot for server-rendered header chrome. */
 export function headerUserFromSession(session: Session | null): HeaderUser {

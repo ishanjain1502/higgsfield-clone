@@ -2,6 +2,7 @@ import Link from "next/link";
 
 import { HiggsfieldLogo } from "@/components/shell/higgsfield-logo";
 import { buttonVariants } from "@/components/ui/button";
+import type { HeaderUser } from "@/lib/header-user";
 import { cn } from "@/lib/utils";
 
 function HiggsfieldPricingIcon({ className }: { className?: string }) {
@@ -25,11 +26,6 @@ function HiggsfieldPricingIcon({ className }: { className?: string }) {
     </svg>
   );
 }
-
-export type HeaderUser = {
-  name?: string | null;
-  role?: "evaluator";
-} | null;
 
 function accountLabel(user: NonNullable<HeaderUser>): string {
   if (user.role === "evaluator") return "Evaluator";
