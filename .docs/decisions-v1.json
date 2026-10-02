@@ -1,0 +1,64 @@
+{
+  "version": 1,
+  "O1": { "serviceRole": "skip" },
+  "O3": { "fieldName": "hasSeenHomeOnboardingModal" },
+  "O5": {
+    "maxBytes": 20971520,
+    "allowedMimeTypes": ["video/mp4", "video/webm"],
+    "allowedCodecs": ["h264", "vp9"],
+    "clientCodecCheck": "no"
+  },
+  "O6": { "presetClipsReorderable": "no", "uploadsReorderable": "no" },
+  "O7": { "visibleCapabilityCount": 8, "overflowLabel": "Explore more (preview)" },
+  "O8": {
+    "backgroundPresets": [
+      { "id": "bg-genjutsu", "label": "Genjutsu", "thumbnailAssetPath": "/demo-assets/thumbs/bg-genjutsu.svg" },
+      { "id": "bg-neon", "label": "Neon", "thumbnailAssetPath": "/demo-assets/thumbs/bg-neon.svg" },
+      { "id": "bg-cinematic", "label": "Cinematic", "thumbnailAssetPath": "/demo-assets/thumbs/bg-cinematic.svg" },
+      { "id": "bg-studio", "label": "Studio", "thumbnailAssetPath": "/demo-assets/thumbs/bg-studio.svg" }
+    ],
+    "goldenPathDefaultBackgroundId": "bg-genjutsu"
+  },
+  "O9": {
+    "presetClips": [
+      { "id": "goal", "label": "Goal" },
+      { "id": "assist", "label": "Assist" },
+      { "id": "dribble", "label": "Dribble" },
+      { "id": "celebration", "label": "Celebration" },
+      { "id": "free-kick", "label": "Free kick" }
+    ],
+    "clipPreviewAssetPaths": "/demo-assets/thumbs/clip-placeholder.svg"
+  },
+  "O10": { "includeStyleCustomizationSteps": "no" },
+  "O11": { "allowOtherSubjects": "no" },
+  "O12": { "strategy": "client-only" },
+  "O13": { "prefillFields": ["interests", "createTypes"] },
+  "O14": {
+    "presetChips": ["Highlight reel", "Sports", "Hype edit"],
+    "intentKeywordMap": {
+      "sports highlight": { "createTypes": ["highlight-reels"], "interests": ["sports"] },
+      "highlight reel": { "subject": "Lionel Messi", "clips": ["goal", "celebration"] }
+    }
+  },
+  "O15": {
+    "highlightReelPath": "/create/highlight-reel",
+    "stepQueryParam": "step",
+    "stepValues": ["subject", "clips", "song", "bgm", "background", "generate"],
+    "resultPathPattern": "/result/demo"
+  },
+  "O16": {
+    "bgmCatalog": [
+      { "id": "hype", "label": "Hype" },
+      { "id": "cinematic", "label": "Cinematic" }
+    ],
+    "scriptedYoutubeTrackId": "remember-the-name"
+  },
+  "O17": { "outputVideoPath": "https://ik.imagekit.io/mkxhbldgi/Viva_la_vida_messi.mp4" },
+  "O18": {
+    "studioBannerText": "Demo mode: one prepared highlight video plays for every generate run; your clip, song, and background choices appear in the recipe and input summary only."
+  },
+  "O19": {
+    "focusBannerText": "Coming soon — Focus generation is mocked; use chips or type an intent to jump into Studio with prefilled settings."
+  },
+  "O20": { "reelConfigStorage": "sessionStorage" }
+}

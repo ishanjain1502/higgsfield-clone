@@ -1,0 +1,33 @@
+{
+  "fx": [
+    { "name": "INCLINE", "slug": "incline", "img": "https://cdn.higgsfield.ai/viral_hub/30142c8a-46ee-4930-aca3-6fa5321dd84a.webp", "vid": "https://cdn.higgsfield.ai/viral_hub/bade6252-7039-42eb-a50c-45c142c7f70f.mp4", "w": 272, "h": 363 },
+    { "name": "ACT NATURAL", "slug": "act-natural", "img": "https://cdn.higgsfield.ai/viral_hub/17cc1333-9822-442c-adaa-d208c59e3e01.webp", "vid": "https://cdn.higgsfield.ai/viral_hub/7a261cff-8d6c-4bab-84e7-515364061f3e.mp4", "w": 272, "h": 483 },
+    { "name": "LACEWALKER", "slug": "lacewalker", "img": "https://cdn.higgsfield.ai/viral_hub/ef3dfc4c-a4c2-44a0-af27-d005bd1c319d.webp", "vid": "https://cdn.higgsfield.ai/viral_hub/d806368c-0d8a-4a7b-b43a-8ff22fa64563.mp4", "w": 272, "h": 153 },
+    { "name": "BURNING MAN", "slug": "burning-man", "img": "https://cdn.higgsfield.ai/viral_hub/a1560137-597c-455a-be9e-9622cccf76a3.webp", "vid": "", "w": 272, "h": 363 },
+    { "name": "MELTING", "slug": "melting", "img": "https://cdn.higgsfield.ai/viral_hub/6ecca888-1780-46ae-a86d-a05b69b2fe34.webp", "vid": "", "w": 272, "h": 272 },
+    { "name": "WORLD MORPHING", "slug": "world-morphing", "img": "https://cdn.higgsfield.ai/viral_hub/0abb112e-068d-45e4-acea-9c8c44a16781.webp", "vid": "https://cdn.higgsfield.ai/viral_hub/950efc04-6ae6-4b31-bfa5-83c87244014c.mp4", "w": 272, "h": 483 },
+    { "name": "HIGH FLIP", "slug": "high-flip", "img": "https://cdn.higgsfield.ai/viral_hub/95cd0d73-4f3c-40d1-ac0b-c8668a99440b.webp", "vid": "https://cdn.higgsfield.ai/viral_hub/001156a7-cfdb-4e16-8f13-68c246ddc06c.mp4", "w": 272, "h": 483 },
+    { "name": "STREET COLOSSUS", "slug": "street-colossus", "img": "https://cdn.higgsfield.ai/viral_hub/5e67ff0a-60f7-4c0a-8ace-18c9bf3e5426.webp", "vid": "https://cdn.higgsfield.ai/viral_hub/e0278141-12c9-4139-91eb-b4294d833ed9.mp4", "w": 272, "h": 483 },
+    { "name": "SELFCEPTION", "slug": "selfception", "img": "https://cdn.higgsfield.ai/viral_hub/495d9e85-0417-47d9-9e0a-722ace805852.webp", "vid": "https://cdn.higgsfield.ai/viral_hub/6ef62a07-2609-4693-8225-e6263b76afab.mp4", "w": 272, "h": 363 },
+    { "name": "CUTOUT", "slug": "cutout", "img": "https://cdn.higgsfield.ai/viral_hub/b5c90864-c3c5-4b14-87a0-3739250fd00b.webp", "vid": "https://cdn.higgsfield.ai/viral_hub/a64711ac-93b8-46ee-a9ce-37ee5c18e148.mp4", "w": 272, "h": 204 },
+    { "name": "FLOATING FALL", "slug": "floating-fall", "img": "https://cdn.higgsfield.ai/viral_hub/151664fa-7f7f-43d6-80fa-4683104a3c02.webp", "vid": "https://cdn.higgsfield.ai/viral_hub/d877f71c-d2f3-44df-9317-f3ce6889bcb6.mp4", "w": 272, "h": 483 },
+    { "name": "EYES IN", "slug": "eyes-in", "img": "https://cdn.higgsfield.ai/viral_hub/5354ce11-c68c-45a0-8a97-5aab94f52833.webp", "vid": "https://cdn.higgsfield.ai/viral_hub/dba03734-6e8a-4337-acb4-17ce943563d8.mp4", "w": 272, "h": 483 },
+    { "name": "WILD RIDE", "slug": "wild-ride", "img": "https://cdn.higgsfield.ai/viral_hub/99aa3365-5ae0-4616-9722-ce0dc087607d.webp", "vid": "https://cdn.higgsfield.ai/viral_hub/8cd9e3fc-8e4f-4071-abff-8934f3381507.mp4", "w": 272, "h": 483 },
+    { "name": "SMASH AND GRAB", "slug": "smash-and-grab", "img": "https://cdn.higgsfield.ai/viral_hub/4a2315f6-57e1-4378-82a5-598ddbbfbbcb.webp", "vid": "https://cdn.higgsfield.ai/viral_hub/c32886ee-2d15-4697-a366-041a9deaffe2.mp4", "w": 272, "h": 483 },
+    { "name": "STUDIO SLIDE", "slug": "studio-slide", "img": "https://cdn.higgsfield.ai/viral_hub/05201733-c72f-43ed-8393-8b8cea28b8ce.webp", "vid": "https://cdn.higgsfield.ai/viral_hub/c129fb83-2014-4a37-a3f8-6c7dfeab0254.mp4", "w": 272, "h": 204 }
+  ],
+  "soul2": [
+    { "alt": "A straight-on medium shot captures a handmade jellyfish-shaped lamp sitting on a light green tabletop", "h": 454, "w": 340, "src": "https://d8j0ntlcm91z4.cloudfront.net/user_35h9Zqn0Bk5qurQOPUM7laOSfXO/hf_20260217_184432_7af6e3df-a5ad-4e8a-a3b4-c6d8637ce85c.png" },
+    { "alt": "A low-angle medium shot captures a young adult woman standing in a snowy mountainous landscape", "h": 454, "w": 340, "src": "https://d8j0ntlcm91z4.cloudfront.net/user_36Hwty94QweUxs82UEGsxmReIrf/hf_20260217_175012_2482b23d-7762-4366-b718-3fde133ac10e.png" },
+    { "alt": "A high-angle shot of an open notebook placed on a wooden table", "h": 255, "w": 340, "src": "https://d8j0ntlcm91z4.cloudfront.net/user_35h9Zqn0Bk5qurQOPUM7laOSfXO/hf_20260218_140621_0659e72b-b64a-44f5-ae26-8cc53ebbdb68.png" },
+    { "alt": "A low-angle full-body shot of a young adult subject", "h": 255, "w": 340, "src": "https://d8j0ntlcm91z4.cloudfront.net/user_35h9Zqn0Bk5qurQOPUM7laOSfXO/hf_20260207_193655_711f3c26-8d2b-4e66-89e4-8357c0100b62.png" },
+    { "alt": "A high-angle, full-body fashion editorial photograph of a young adult South Asian woman", "h": 454, "w": 340, "src": "https://d8j0ntlcm91z4.cloudfront.net/user_36Hwty94QweUxs82UEGsxmReIrf/hf_20260218_182218_2cfc8314-b866-479e-a70e-b8f27b950e11.png" },
+    { "alt": "A straight-on, recumbent close-up of a young woman with porcelain skin", "h": 454, "w": 340, "src": "https://d8j0ntlcm91z4.cloudfront.net/user_36Hwty94QweUxs82UEGsxmReIrf/hf_20260218_124914_3497c398-0398-44f7-a5b7-395d6c832886.png" },
+    { "alt": "A medium shot of a young Asian woman in a stylized outfit against a weathered wall", "h": 454, "w": 340, "src": "https://d8j0ntlcm91z4.cloudfront.net/user_35h9Zqn0Bk5qurQOPUM7laOSfXO/hf_20260213_201650_322c2e1d-2643-4f06-8c06-dfda0246b527.png" },
+    { "alt": "Two young women reclining outdoors before a traditional building", "h": 454, "w": 340, "src": "https://d8j0ntlcm91z4.cloudfront.net/user_36Hwty94QweUxs82UEGsxmReIrf/hf_20260218_120631_b4bade9f-5e82-4e87-bc66-cea3e15d46de.png" },
+    { "alt": "Close-up overhead shot of a young woman in a monochrome outfit", "h": 454, "w": 340, "src": "https://d8j0ntlcm91z4.cloudfront.net/user_36Hwty94QweUxs82UEGsxmReIrf/hf_20260218_190742_2ffd28b9-6a71-4772-8eeb-1a63d989f0d9.png" },
+    { "alt": "Close-up side profile of a young man at an outdoor café table", "h": 454, "w": 340, "src": "https://d8j0ntlcm91z4.cloudfront.net/user_36Hwty94QweUxs82UEGsxmReIrf/hf_20260218_184556_0e4b2d2d-e4b7-4d49-91e8-a67ed83fb932.png" },
+    { "alt": "A mixed-media artwork with a weathered, vintage aesthetic", "h": 454, "w": 340, "src": "https://d8j0ntlcm91z4.cloudfront.net/user_35h9Zqn0Bk5qurQOPUM7laOSfXO/hf_20260218_141135_4468ae61-47be-4396-834b-8bbc78054909.png" },
+    { "alt": "A two-frame composite of a young woman with long blonde hair relaxing", "h": 454, "w": 340, "src": "https://d8j0ntlcm91z4.cloudfront.net/user_36Hwty94QweUxs82UEGsxmReIrf/hf_20260218_123341_5eeff76b-7e3b-4826-ae1c-ec7ac8b66643.png" }
+  ]
+}

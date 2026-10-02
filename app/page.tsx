@@ -1,37 +1,46 @@
-import Link from "next/link";
+import { CommunityGallery } from "@/components/landing/community-gallery";
+import {
+  CanvasBanner,
+  PhotodumpBanner,
+  SupercomputerBanner,
+} from "@/components/landing/feature-banners";
+import { FilmFestival } from "@/components/landing/film-festival";
+import { GenjutsuShowcase } from "@/components/landing/genjutsu-showcase";
+import { HeroCarousel } from "@/components/landing/hero-carousel";
+import { McpDots } from "@/components/landing/mcp-dots";
+import { MoreFeatures } from "@/components/landing/more-features";
+import { ProjectsGrid } from "@/components/landing/projects-grid";
+import { SignupPromo } from "@/components/landing/signup-promo";
+import { SiteFooter } from "@/components/landing/site-footer";
+import { VisualEffects } from "@/components/landing/visual-effects";
+import { HF_GALLERIES } from "@/lib/higgsfield-home-constants";
 
-import { buttonVariants } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
+const gallery = Object.fromEntries(HF_GALLERIES.map((g) => [g.id, g]));
 
 export default function Home() {
   return (
-    <main className="flex flex-1 flex-col items-center justify-center px-6 py-24">
-      <div className="mx-auto flex max-w-2xl flex-col items-center gap-8 text-center">
-        <p className="text-sm font-medium uppercase tracking-widest text-muted-foreground">
-          Creative AI studio
-        </p>
-        <h1 className="text-4xl font-semibold tracking-tight sm:text-5xl">
-          Create highlights without the overwhelm
-        </h1>
-        <p className="text-lg text-muted-foreground">
-          A focused take on the Higgsfield experience — one complete workflow,
-          Studio control, and guided Focus mode.
-        </p>
-        <div className="flex flex-wrap items-center justify-center gap-3">
-          <Link
-            href="/login"
-            className={cn(buttonVariants({ size: "lg" }))}
-          >
-            Start Creating
-          </Link>
-          <Link
-            href="/studio"
-            className={cn(buttonVariants({ size: "lg", variant: "outline" }))}
-          >
-            Explore
-          </Link>
-        </div>
-      </div>
-    </main>
+    <>
+      <main className="mx-auto flex w-full max-w-[1440px] flex-1 flex-col gap-12 px-4 pt-3 pb-16 lg:gap-16">
+        
+        <HeroCarousel />
+        <SignupPromo />
+        <McpDots />
+        <FilmFestival />
+        <VisualEffects />
+        <GenjutsuShowcase />
+        <CommunityGallery gallery={gallery["seedance-2-5"]} />
+        <ProjectsGrid />
+        <SupercomputerBanner />
+        <CommunityGallery gallery={gallery["gpt-image-2"]} />
+        <CanvasBanner />
+        <CommunityGallery gallery={gallery["marketing-studio"]} />
+        <CommunityGallery gallery={gallery["seedance-2-0"]} />
+        <PhotodumpBanner />
+        <CommunityGallery gallery={gallery["soul-cinema"]} />
+        <CommunityGallery gallery={gallery["soul-2-0"]} />
+        <MoreFeatures />
+      </main>
+      <SiteFooter />
+    </>
   );
 }
