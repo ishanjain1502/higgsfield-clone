@@ -1,6 +1,6 @@
 import type { NextConfig } from "next";
 
-import { HF_MEDIA_HOSTS } from "./lib/higgsfield-home-constants";
+import { HF_MEDIA_HOSTS } from "./lib/hf-media-hosts";
 
 const nextConfig: NextConfig = {
   images: {

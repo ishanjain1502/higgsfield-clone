@@ -1402,12 +1402,5 @@ export const HF_FOOTER: {
   ]
 };
 
-/** Every remote host referenced above; mirrored in next.config.ts `images.remotePatterns`. */
-export const HF_MEDIA_HOSTS = [
-  "assets.higgsfield.ai",
-  "cdn.higgsfield.ai",
-  "d2ol7oe51mr4n9.cloudfront.net",
-  "d8j0ntlcm91z4.cloudfront.net",
-  "static-public-media.higgsfield.ai",
-  "static.higgsfield.ai"
-] as const;
+/** Every remote host referenced above; mirrored in `lib/hf-media-hosts.ts`. */
+export { HF_MEDIA_HOSTS } from "./hf-media-hosts";

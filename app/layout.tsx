@@ -3,6 +3,10 @@ import { Geist, Geist_Mono, Inter, Space_Grotesk } from "next/font/google";
 
 import { Providers } from "@/components/providers";
 import { AppShell } from "@/components/shell/app-shell";
+import { HiggsfieldHeader } from "@/components/shell/higgsfield-header";
+import { HiggsfieldPromoBar } from "@/components/shell/higgsfield-promo-bar";
+import { auth } from "@/lib/auth";
+import { headerUserFromSession } from "@/lib/header-user";
 
 import "./globals.css";
 
@@ -32,14 +36,23 @@ export const metadata: Metadata = {
   description: "Higgsfield-inspired creative studio — v1",
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default async function RootLayout({ children }: LayoutProps<"/">) {
+  const session = await auth();
+  const headerUser = headerUserFromSession(session);
+
   return (
     <html
       lang="en"
       className={`dark ${geistSans.variable} ${geistMono.variable} ${inter.variable} ${spaceGrotesk.variable} h-full antialiased`}
+      suppressHydrationWarning
     >
-      <body className="flex min-h-full flex-col">
-        <Providers>
+      <body
+        className="flex min-h-full flex-col"
+        suppressHydrationWarning
+      >
+        <Providers session={session}>
+          <HiggsfieldPromoBar />
+          <HiggsfieldHeader user={headerUser} />
           <AppShell>{children}</AppShell>
         </Providers>
       </body>
