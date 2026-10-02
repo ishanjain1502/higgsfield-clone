@@ -1,3 +1,5 @@
+import { isEvaluatorAccessEnabled } from "@/lib/evaluator";
+
 const AUTH_ENV_KEYS = [
   "DATABASE_URL",
   "AUTH_SECRET",
@@ -14,6 +16,10 @@ export function getMissingAuthEnvKeys(): AuthEnvKey[] {
 
 export function isAuthConfigured(): boolean {
   return getMissingAuthEnvKeys().length === 0;
+}
+
+export function isSignInAvailable(): boolean {
+  return isAuthConfigured() || isEvaluatorAccessEnabled();
 }
 
 export function authEnvHelpMessage(): string {

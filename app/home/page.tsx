@@ -72,19 +72,6 @@ export default async function HomePage() {
         )}
       </section>
 
-      <section className="flex flex-col gap-3 border-t border-border/60 pt-8">
-        <h2 className="text-sm font-medium uppercase tracking-wider text-muted-foreground">
-          Explore Studio
-        </h2>
-        <div className="flex flex-wrap gap-2">
-          <Link href="/studio" className={cn(buttonVariants({ variant: "outline" }))}>
-            Studio
-          </Link>
-          <Link href="/focus" className={cn(buttonVariants({ variant: "outline" }))}>
-            Focus
-          </Link>
-        </div>
-      </section>
     </main>
   );
 }

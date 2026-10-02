@@ -3,6 +3,7 @@ import { NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
 import { isAuthConfigured } from "@/lib/auth-env";
 import { prisma } from "@/lib/db";
+import { isEvaluatorUserId } from "@/lib/evaluator";
 import {
   isValidOnboardingPreferences,
   type OnboardingPreferences,
@@ -20,6 +21,10 @@ export async function POST(request: Request) {
   const userId = session?.user?.id;
   if (!userId) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
+  if (isEvaluatorUserId(userId)) {
+    return NextResponse.json({ ok: true });
   }
 
   let body: unknown;

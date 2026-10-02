@@ -1,5 +1,7 @@
 "use client";
 
+import { useState } from "react";
+
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -21,11 +23,17 @@ export function ComingSoonDialog({
   onOpenChange,
   featureName,
 }: ComingSoonDialogProps) {
+  // Callers clear the feature on close; keep the last title so the exit animation doesn't flash a fallback.
+  const [shownName, setShownName] = useState(featureName);
+  if (open && featureName !== shownName) {
+    setShownName(featureName);
+  }
+
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>{featureName}</DialogTitle>
+          <DialogTitle>{shownName}</DialogTitle>
           <DialogDescription className="text-pretty">
             This workflow is part of the broader creative studio we&apos;re
             building. For this version, we&apos;re focusing on Highlight Reel.
