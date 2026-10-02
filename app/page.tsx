@@ -21,6 +21,7 @@ export default function Home() {
   return (
     <>
       <main className="mx-auto flex w-full max-w-[1440px] flex-1 flex-col gap-12 px-4 pt-3 pb-16 lg:gap-16">
+        
         <HeroCarousel />
         <SignupPromo />
         <McpDots />

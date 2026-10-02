@@ -1,6 +1,7 @@
 /** Routes that show Studio / Focus mode switcher under the main nav. */
 export function showsModeSwitcher(pathname: string): boolean {
   return (
+    pathname === "/" ||
     pathname.startsWith("/home") ||
     pathname.startsWith("/studio") ||
     pathname.startsWith("/focus") ||

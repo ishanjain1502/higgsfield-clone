@@ -13,8 +13,8 @@ export default async function StudioPage() {
           Explore Studio
         </h1>
         <p className="text-muted-foreground">
-          Browse creative workflows inspired by Higgsfield. Highlight Reel is
-          ready end-to-end; everything else opens with a coming-soon preview.
+          Start with Highlight Reel — the v1 golden path from subject and clips
+          through polish and export.
         </p>
       </div>
 

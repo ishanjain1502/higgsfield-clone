@@ -11,8 +11,8 @@ describe("partitionStudioCapabilities", () => {
       partitionStudioCapabilities();
 
     expect(visibleCount).toBe(8);
-    expect(visible).toHaveLength(8);
-    expect(overflow.length).toBe(STUDIO_CAPABILITIES.length - 8);
+    expect(visible).toHaveLength(STUDIO_CAPABILITIES.length);
+    expect(overflow).toHaveLength(0);
     expect(overflowLabel).toBe("Explore more (preview)");
   });
 
