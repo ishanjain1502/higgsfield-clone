@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import { HeaderProfileMenu } from "@/components/shell/header-profile-menu";
 import { HiggsfieldLogo } from "@/components/shell/higgsfield-logo";
 import { buttonVariants } from "@/components/ui/button";
 import type { HeaderUser } from "@/lib/header-user";
@@ -25,11 +26,6 @@ function HiggsfieldPricingIcon({ className }: { className?: string }) {
       />
     </svg>
   );
-}
-
-function accountLabel(user: NonNullable<HeaderUser>): string {
-  if (user.role === "evaluator") return "Evaluator";
-  return user.name?.split(" ")[0] ?? "Account";
 }
 
 export function HiggsfieldHeader({ user }: { user: HeaderUser }) {
@@ -77,17 +73,7 @@ export function HiggsfieldHeader({ user }: { user: HeaderUser }) {
             <HiggsfieldPricingIcon className="size-4" />
             Pricing
           </Link>
-          {signedIn && user ? (
-            <Link
-              href="/home"
-              className={cn(
-                buttonVariants({ variant: "outline", size: "sm" }),
-                "border-white/15 bg-white/5",
-              )}
-            >
-              {accountLabel(user)}
-            </Link>
-          ) : (
+          {signedIn && user ? <HeaderProfileMenu user={user} /> : (
             <>
               <Link
                 href="/login"

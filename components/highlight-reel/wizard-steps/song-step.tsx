@@ -8,7 +8,7 @@ import { Input } from "@/components/ui/input";
 import { manifestData } from "@/lib/preset-manifest";
 import type { ReelConfig } from "@/lib/reel-config";
 
-const TRACK_LABEL = "Remember the Name";
+const TRACK_LABEL = "Viva La Vida by Coldplay";
 
 type SongStepProps = {
   config: ReelConfig;
