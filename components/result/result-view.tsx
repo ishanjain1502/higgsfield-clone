@@ -38,6 +38,18 @@ type ResultViewProps = {
   config: ReelConfig;
 };
 
+/** Browsers ignore `download` on cross-origin links, so ask ImageKit to send it as an attachment. */
+function exportHref(videoPath: string): string {
+  if (!/^https?:\/\//.test(videoPath)) {
+    return videoPath;
+  }
+  const url = new URL(videoPath);
+  if (url.hostname === "ik.imagekit.io") {
+    url.searchParams.set("ik-attachment", "true");
+  }
+  return url.toString();
+}
+
 function clipLabel(id: string): string {
   return manifestData.presetClips.find((c) => c.id === id)?.label ?? id;
 }
@@ -117,7 +129,7 @@ export function ResultView({ videoPath, recipe, config }: ResultViewProps) {
         </div>
         <div className="flex flex-wrap gap-2">
           <a
-            href={videoPath}
+            href={exportHref(videoPath)}
             download={DOWNLOAD_FILENAME}
             className={cn(
               buttonVariants(),

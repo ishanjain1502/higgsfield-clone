@@ -53,7 +53,7 @@
     ],
     "scriptedYoutubeTrackId": "remember-the-name"
   },
-  "O17": { "outputVideoPath": "/demo-assets/messi-highlight.mp4" },
+  "O17": { "outputVideoPath": "https://ik.imagekit.io/mkxhbldgi/Viva_la_vida_messi.mp4" },
   "O18": {
     "studioBannerText": "Demo mode: one prepared highlight video plays for every generate run; your clip, song, and background choices appear in the recipe and input summary only."
   },

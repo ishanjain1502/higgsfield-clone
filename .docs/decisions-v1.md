@@ -151,7 +151,7 @@ List prefilled fields (use empty array if none):
 
 ## O17 — Demo output video (single file)
 
-- **outputVideoPath:** `/demo-assets/messi-highlight.mp4`
+- **outputVideoPath:** `https://ik.imagekit.io/mkxhbldgi/Viva_la_vida_messi.mp4` (ImageKit CDN; Export appends `?ik-attachment=true` to force a download)
 
 ## O18 — Mock transparency copy (Studio)
 
