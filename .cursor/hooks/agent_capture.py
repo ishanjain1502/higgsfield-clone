@@ -231,6 +231,22 @@ def handle_session_end(state: dict, payload: dict) -> None:
     refresh_frontmatter(log_file, sync_meta(session))
 
 
+def repair_invalid_json_escapes(raw: str) -> str:
+    return re.sub(r'\\(?!["\\/bfnrtu]|u[0-9a-fA-F]{4})', r"\\\\", raw)
+
+
+def parse_hook_payload(raw: str) -> dict | None:
+    text = raw.lstrip("\ufeff").strip()
+    if not text:
+        return {}
+    for candidate in (text, repair_invalid_json_escapes(text)):
+        try:
+            return json.loads(candidate)
+        except json.JSONDecodeError:
+            continue
+    return None
+
+
 def configure_stdio_utf8() -> None:
     for stream in (sys.stdin, sys.stdout):
         reconfigure = getattr(stream, "reconfigure", None)
@@ -241,16 +257,27 @@ def configure_stdio_utf8() -> None:
                 pass
 
 
+def hook_witness(event: str, detail: str = "") -> None:
+    try:
+        LOGS_DIR.mkdir(parents=True, exist_ok=True)
+        line = f"{iso_z(utc_now())} python event={event} {detail}".strip()
+        with (LOGS_DIR / ".hook-invocations.log").open("a", encoding="utf-8") as f:
+            f.write(line + "\n")
+    except OSError:
+        pass
+
+
 def main() -> int:
     configure_stdio_utf8()
-    try:
-        raw = sys.stdin.read()
-        payload = json.loads(raw) if raw.strip() else {}
-    except json.JSONDecodeError:
+    raw = sys.stdin.read()
+    payload = parse_hook_payload(raw)
+    if payload is None:
+        hook_witness("parse-error", f"bytes={len(raw)}")
         print(json.dumps({"continue": True}))
         return 0
 
     event = payload.get("hook_event_name", "")
+    hook_witness(event or "unknown")
     state = load_state()
 
     if event == "sessionStart":

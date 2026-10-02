@@ -26,6 +26,35 @@
 
 **Workspace:** Project hooks run only in a **trusted** workspace. If canaries do not appear, confirm the folder is trusted and reload the window (Cursor watches `hooks.json` on save).
 
+**If `.agent-logs/` stays empty:** Cursor is not running the hook command (the script itself is fine when run manually). Check in order:
+
+1. **Settings → Hooks** — project hooks from `.cursor/hooks.json` should appear as registered.
+2. **View → Output → dropdown → Hooks** — look for `Project hooks disabled`, spawn/ENOENT errors, or `Hook produced no output`.
+3. **Trust** — Command Palette → “Workspace: Manage Workspace Trust” → trust `E:\Projects\8x_assignment`.
+4. **Reload** — Developer: Reload Window after changing `hooks.json`.
+5. **Witness file** — after any agent message, `.agent-logs/.hook-invocations.log` should gain lines. If it stays missing, hooks never ran (not a Python bug).
+
+Hook command uses **`node .cursor/hooks/run-capture.mjs`** (Windows-friendly) which calls `agent_capture.py`.
+
+## Backfill (discussion before hooks worked)
+
+Hooks cannot replay history. Cursor stores past agent chats under:
+
+`%USERPROFILE%\.cursor\projects\e-Projects-8x-assignment\agent-transcripts\`
+
+To import **prompt + final reply only** (no tool traces) into `.agent-logs/`:
+
+```bash
+npm run backfill:agent-logs
+```
+
+- Writes one `YYYY-MM-DD_HH-MM-SS_<session-id>.md` per Composer chat session.
+- Skips sessions that already have a log file (same `session_id` in frontmatter).
+- Re-run after a long day of work, or use `python scripts/backfill-agent-logs-from-transcripts.py --force` to overwrite.
+- The **current in-progress turn** (no `turn_ended` yet in the transcript) may miss its latest response until the turn finishes; hooks cover new messages after that.
+
+Set `AGENT_LOG_AUTHOR=your-github-handle` if git `user.name` is not your handle.
+
 ## 3. Log file path (live canaries)
 
 After live canaries, entries should appear under:
@@ -72,3 +101,4 @@ Paste raw `[LOG_ENTRY ...]` blocks from the live log file(s) below once confirme
 
 1. **Frontmatter refresh bug** — early version duplicated the “Session Log” header when updating metadata; fixed by keeping only `[LOG_ENTRY`… blocks when rewriting the header.
 2. **Windows UTF-8 in simulation** — em dash in the canary string corrupted without UTF-8 stdio; hook script now calls `reconfigure(encoding="utf-8")` on stdin/stdout (Cursor forum notes remaining Windows stdin issues for some builds; enable system UTF-8 beta if prompts look corrupted in logs).
+3. **Invalid JSON on Windows paths** — hook payloads can include `workspace_roots` like `E:\Projects\...` with unescaped backslashes, so strict `JSON.parse` failed (`wrapper event=parse-error` in `.hook-invocations.log`). Fixed in `.cursor/hooks/parse-hook-input.mjs` and `agent_capture.py` by repairing invalid `\` escapes before parsing.

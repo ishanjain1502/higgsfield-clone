@@ -8,7 +8,9 @@
     "postinstall": "node scripts/ensure-prisma-env.cjs && prisma generate",
     "start": "next start",
     "lint": "eslint",
-    "test": "vitest run"
+    "test": "vitest run",
+    "backfill:agent-logs": "python scripts/backfill-agent-logs-from-transcripts.py",
+    "backfill:capture-state": "python scripts/backfill-capture-state.py"
   },
   "dependencies": {
     "@auth/prisma-adapter": "^2.11.3",
