@@ -2,6 +2,16 @@
 
 Next.js creative studio with Google auth, Supabase PostgreSQL, and a highlight-reel golden path.
 
+## Try the demo
+
+To test the demo without Google sign-in, open **`/login`** and paste this **evaluation token** into the **Evaluator access** field (below the sign-in options), then choose **Continue as evaluator**:
+
+```text
+1eb9f04a144ab8bd37d2eaf5caee47fbd96de8e5fbb47813
+```
+
+You can also use the one-click [evaluator link](#evaluator-access-optional) if your deployment has evaluator access enabled.
+
 ## Prerequisites
 
 - Node.js 20+
@@ -54,6 +64,35 @@ Prisma talks to Postgres via `DATABASE_URL` / `DIRECT_URL`. Supabase JS env vars
 
 Sign-in is **Google only** in v1 (no magic link).
 
+## Evaluator access (optional)
+
+Reviewers can use the app without Google OAuth or a database user when evaluator access is enabled.
+
+1. In `.env.local` (or Vercel env):
+
+   ```env
+   EVALUATOR_ACCESS_ENABLED="true"
+   EVALUATOR_ACCESS_TOKEN="1eb9f04a144ab8bd37d2eaf5caee47fbd96de8e5fbb47813"
+   ```
+
+   `AUTH_SECRET` must also be set. Generate a different token for production if this repo is public.
+
+2. **One-click link** (replace the origin with your deployed `AUTH_URL` when not on localhost):
+
+   ```text
+   http://localhost:3000/evaluator?token=1eb9f04a144ab8bd37d2eaf5caee47fbd96de8e5fbb47813
+   ```
+
+   Production example:
+
+   ```text
+   https://your-app.vercel.app/evaluator?token=1eb9f04a144ab8bd37d2eaf5caee47fbd96de8e5fbb47813
+   ```
+
+3. Or use the token from [Try the demo](#try-the-demo) on `/login` (**Evaluator access** → **Continue as evaluator**).
+
+Evaluator sessions skip onboarding and land on `/studio` with golden-path preferences prefilled.
+
 ## Scripts
 
 ```bash
@@ -90,6 +129,8 @@ Deployment was **not** run during implementation; use these steps when you are r
    | `AUTH_URL` | **Production origin**, e.g. `https://your-app.vercel.app` (no trailing slash) |
    | `GOOGLE_CLIENT_ID` | OAuth Web client ID |
    | `GOOGLE_CLIENT_SECRET` | OAuth client secret |
+   | `EVALUATOR_ACCESS_ENABLED` | `true` if reviewers should bypass Google sign-in |
+   | `EVALUATOR_ACCESS_TOKEN` | Shared secret (see [Evaluator access](#evaluator-access-optional)) |
 
 4. In Google Cloud Console, add an **Authorized redirect URI**:
 
