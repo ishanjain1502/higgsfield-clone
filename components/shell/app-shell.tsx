@@ -4,9 +4,7 @@ import { usePathname } from "next/navigation";
 
 import { showsModeSwitcher } from "@/lib/app-routes";
 
-import { HiggsfieldHeader } from "./higgsfield-header";
 import { HiggsfieldProductNav } from "./higgsfield-product-nav";
-import { HiggsfieldPromoBar } from "./higgsfield-promo-bar";
 import { ModeSwitcher } from "./mode-switcher";
 
 const MINIMAL_CHROME_PREFIXES = ["/login", "/onboarding", "/evaluator"];
@@ -21,19 +19,11 @@ export function AppShell({ children }: { children: React.ReactNode }) {
   const modeSwitcher = showsModeSwitcher(pathname);
 
   if (minimal) {
-    return (
-      <>
-        <HiggsfieldPromoBar />
-        <HiggsfieldHeader />
-        {children}
-      </>
-    );
+    return <>{children}</>;
   }
 
   return (
     <>
-      <HiggsfieldPromoBar />
-      <HiggsfieldHeader />
       <HiggsfieldProductNav />
       {modeSwitcher ? <ModeSwitcher /> : null}
       {children}

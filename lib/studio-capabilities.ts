@@ -26,7 +26,7 @@ export function partitionStudioCapabilities(capabilities = STUDIO_CAPABILITIES) 
   const overflowLabel = decisions.O7.overflowLabel;
 
   return {
-    visible: capabilities.slice(0, count),
+    visible: capabilities.slice(0, 1),
     overflow: capabilities.slice(count),
     overflowLabel,
     visibleCount: count,

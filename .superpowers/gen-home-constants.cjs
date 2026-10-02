@@ -370,9 +370,13 @@ async function vendor() {
 
 const hosts = new Set();
 for (const m of out.matchAll(/https:\/\/([^/"]+)\//g)) hosts.add(m[1]);
-out += `\n/** Every remote host referenced above; mirrored in next.config.ts \`images.remotePatterns\`. */\nexport const HF_MEDIA_HOSTS = ${JSON.stringify([...hosts].sort(), null, 2)} as const;\n`;
+out += `\n/** Every remote host referenced above; mirrored in \`lib/hf-media-hosts.ts\`. */\nexport { HF_MEDIA_HOSTS } from "./hf-media-hosts";\n`;
+
+const hostsPath = path.join(root, "lib", "hf-media-hosts.ts");
+const hostsSource = `/** Remote image hosts for Higgsfield landing media. Used by next.config \`images.remotePatterns\`. */\nexport const HF_MEDIA_HOSTS = ${JSON.stringify([...hosts].sort(), null, 2)} as const;\n`;
 
 vendor().then(() => {
+  fs.writeFileSync(hostsPath, hostsSource);
   fs.writeFileSync(path.join(root, "lib", "higgsfield-home-constants.ts"), out);
   const counts = galleries.map((g) => `${g.id}:${g.items.length}`).join(" ");
   console.log("wrote lib/higgsfield-home-constants.ts", {

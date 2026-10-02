@@ -1,15 +1,43 @@
-"use client";
-
 import Link from "next/link";
-import { useSession } from "next-auth/react";
-import { Tag } from "lucide-react";
 
+import { HiggsfieldLogo } from "@/components/shell/higgsfield-logo";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
-export function HiggsfieldHeader() {
-  const { data: session, status } = useSession();
-  const signedIn = status === "authenticated" && session?.user;
+function HiggsfieldPricingIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden
+    >
+      <path
+        d="M8.5 7.75L6.25 10L8.5 12.25M12.7071 20.0429L22.049 10.701C22.4371 10.3129 22.4398 9.68443 22.0551 9.29295L16.901 4.04903C16.713 3.85774 16.4561 3.75 16.1879 3.75H7.81214C7.54393 3.75 7.28696 3.85774 7.09895 4.04903L1.94493 9.29295C1.56016 9.68443 1.56288 10.3129 1.95102 10.701L11.2929 20.0429C11.6834 20.4334 12.3166 20.4334 12.7071 20.0429Z"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+export type HeaderUser = {
+  name?: string | null;
+  role?: "evaluator";
+} | null;
+
+function accountLabel(user: NonNullable<HeaderUser>): string {
+  if (user.role === "evaluator") return "Evaluator";
+  return user.name?.split(" ")[0] ?? "Account";
+}
+
+export function HiggsfieldHeader({ user }: { user: HeaderUser }) {
+  const signedIn = Boolean(user);
 
   return (
     <header className="sticky top-0 z-50 border-b border-white/10 bg-background/95 backdrop-blur-md">
@@ -18,18 +46,8 @@ export function HiggsfieldHeader() {
           href={signedIn ? "/studio" : "/"}
           className="flex items-center gap-2 text-sm font-semibold tracking-tight text-foreground"
         >
-          <span
-            className="flex size-7 items-center justify-center rounded-lg bg-foreground text-background"
-            aria-hidden
-          >
-            <svg viewBox="0 0 24 24" className="size-4" fill="currentColor">
-              <path
-                d="M6 14c2-3 4-8 6-8s4 5 6 8c-1.5 1-3 2-5 2s-3.5-1-5-2z"
-                opacity="0.9"
-              />
-            </svg>
-          </span>
-          Higgsfield
+          <HiggsfieldLogo />
+          <span className="md:hidden">Higgsfield</span>
         </Link>
 
         <div className="flex items-center gap-1.5 sm:gap-2">
@@ -60,10 +78,10 @@ export function HiggsfieldHeader() {
               "hidden gap-1.5 text-foreground/90 sm:inline-flex",
             )}
           >
-            <Tag className="size-3.5" />
+            <HiggsfieldPricingIcon className="size-4" />
             Pricing
           </Link>
-          {signedIn ? (
+          {signedIn && user ? (
             <Link
               href="/home"
               className={cn(
@@ -71,9 +89,7 @@ export function HiggsfieldHeader() {
                 "border-white/15 bg-white/5",
               )}
             >
-              {session.user.role === "evaluator"
-                ? "Evaluator"
-                : (session.user.name?.split(" ")[0] ?? "Account")}
+              {accountLabel(user)}
             </Link>
           ) : (
             <>
